@@ -2,9 +2,9 @@ package com.sinyee.babybus.simpleurlbuilder
 
 import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
 
-object UrlBuilderIml {
+object SimpleUrlBuilder {
 
-    fun getNewUrl(
+    fun build(
         tracker: String,
         referrerAccountId: String,
         facebook: String?,
