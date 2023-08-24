@@ -14,4 +14,5 @@ internal object AppConst {
     val UTF = "dXRmLTg=".decrypt()
     val NONE = "Tm9uZQ==".decrypt()
     val FIRST_OPEN = "Zmlyc3RPcGVu".decrypt()
+    val NOT_ID = "bm90SWQ=".decrypt()
 }

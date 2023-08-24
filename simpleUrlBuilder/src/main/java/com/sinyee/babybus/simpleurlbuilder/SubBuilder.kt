@@ -14,15 +14,16 @@ internal object SubBuilder {
     private fun getSub(campaign: String?): Sub {
         return if (campaign != null) {
             val parts = campaign.split("_").toMutableList()
-            if (parts.size < 10) {
+            if (parts.size < 11) {
                 var size = parts.size
-                while (size <= 10) {
+                while (size <= 11) {
                     parts.add("")
                     size++
                 }
             }
 
             parts[10] = AppConst.FIRST_OPEN
+            parts[11] = "null"
 
             val push = if (parts[1] == "" || parts[1] == AppConst.NONE) null
             else parts[1]
@@ -34,7 +35,7 @@ internal object SubBuilder {
             Sub(subs, push)
         } else {
             val push: String? = null
-            val subs = listOf(null, "", "", "", "", "", "", "", "", AppConst.FIRST_OPEN)
+            val subs = listOf(null, "", "", "", "", "", "", "", "", AppConst.FIRST_OPEN, "null")
             Sub(subs, push)
         }
     }
@@ -43,7 +44,8 @@ internal object SubBuilder {
         val str = StringBuilder()
         var key = 1
         subs.forEachIndexed { _, item ->
-            str.append("${"JnN1Yg==".decrypt()}$key=$item")
+            if (key == 11) str.append("&${AppConst.NOT_ID}=$item")
+            else str.append("${"JnN1Yg==".decrypt()}$key=$item")
             key++
         }
         return str.toString()
