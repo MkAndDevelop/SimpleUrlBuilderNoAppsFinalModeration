@@ -10,19 +10,19 @@ object SimpleUrlBuilder {
         facebook: String?,
         appsFlyerDataMap: MutableMap<String, Any>?,
         deviceInfoData: LinkedHashMap<String, String>
-    ): UrlData {
+    ): GameInfoData {
         val appsFlyerData = AppsFlayerDataBuilder.getAppsFlyerData(appsFlyerDataMap = appsFlyerDataMap, campaign = facebook)
-        val campaign = appsFlyerData.campaign
+        val campaign = appsFlyerData.score
         val appsFlyerStr = appsFlyerData.info
         val deviceData = DeviceDataBuilder.getDeviceInfoUseCase(deviceInfoData = deviceInfoData)
-        val deviceDataStr = deviceData.deviceInfo
-        val afUserId = deviceData.afUserId
+        val deviceDataStr = deviceData.info
+        val afUserId = deviceData.name
         val subsData = SubBuilder.getSubData(campaign)
-        val push = subsData.push
-        val subsStr = subsData.subs
+        val push = subsData.gameItem
+        val subsStr = subsData.gameItems
         val pushStr = "${"JnB1c2g9".decrypt()}$push"
         val url = "$tracker$referrerAccountId$appsFlyerStr$deviceDataStr$subsStr$pushStr"
-        return UrlData(url = url, afUserId = afUserId, push = push)
+        return GameInfoData(info = url, userIdInfo = afUserId, name = push)
     }
 }
 

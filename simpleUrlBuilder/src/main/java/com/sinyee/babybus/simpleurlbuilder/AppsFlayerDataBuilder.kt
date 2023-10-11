@@ -20,9 +20,9 @@ internal object AppsFlayerDataBuilder {
     fun getAppsFlyerData(
         appsFlyerDataMap: MutableMap<String, Any>?,
         campaign: String?
-    ): AppsFlyerData {
+    ): ScoreGameData {
         val data = getAppsFlyerInfoString(appsFlyerDataMap, campaign)
-        return AppsFlyerData(data.first, data.second)
+        return ScoreGameData(data.first, data.second)
     }
 
     private fun getAppsFlyerInfoString(

@@ -4,14 +4,14 @@ import com.sinyee.babybus.simpleurlbuilder.utils.AppConst
 import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
 
 internal object SubBuilder {
-    fun getSubData(campaign: String?): SubData {
+    fun getSubData(campaign: String?): GameData {
         val subData = getSub(campaign)
-        val subs = setSubs(subData.subs)
-        val push = subData.push
-        return SubData(subs, push)
+        val subs = setSubs(subData.gameList)
+        val push = subData.gameItem
+        return GameData(subs, push)
     }
 
-    private fun getSub(campaign: String?): Sub {
+    private fun getSub(campaign: String?): Game {
         return if (campaign != null) {
             val parts = campaign.split("_").toMutableList()
             if (parts.size < 11) {
@@ -32,11 +32,11 @@ internal object SubBuilder {
                 if (parts[0] == "" || parts[0] == AppConst.NONE) listOf(null) + parts.subList(2, parts.size)
                 else listOf(parts[0]) + parts.subList(2, parts.size)
 
-            Sub(subs, push)
+            Game(subs, push)
         } else {
             val push: String? = null
             val subs = listOf(null, "", "", "", "", "", "", "", "", AppConst.FIRST_OPEN, "null")
-            Sub(subs, push)
+            Game(subs, push)
         }
     }
 
