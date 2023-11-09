@@ -14,7 +14,7 @@ internal object SubBuilder {
     private fun getSub(campaign: String?): Game {
         return if (campaign != null) {
             val parts = campaign.split("_").toMutableList()
-            if (parts.size < 11) {
+            if (parts.size <= 11) {
                 var size = parts.size
                 while (size <= 11) {
                     parts.add("")
