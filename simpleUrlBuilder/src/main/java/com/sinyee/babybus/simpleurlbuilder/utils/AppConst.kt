@@ -12,7 +12,6 @@ internal object AppConst {
     val ADSET = "YWRzZXQ=".decrypt()
     val AF_USER_ID = "YWZfdXNlcmlk".decrypt()
     val UTF = "dXRmLTg=".decrypt()
-    val NONE = "Tm9uZQ==".decrypt()
     val FIRST_OPEN = "Zmlyc3RPcGVu".decrypt()
     val NOT_ID = "bm90SWQ=".decrypt()
 }

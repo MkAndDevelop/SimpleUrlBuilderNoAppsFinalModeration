@@ -25,11 +25,11 @@ internal object SubBuilder {
             parts[10] = AppConst.FIRST_OPEN
             parts[11] = "null"
 
-            val push = if (parts[1] == "" || parts[1] == AppConst.NONE) null
+            val push = if (parts[1] == "") null
             else parts[1]
 
             val subs =
-                if (parts[0] == "" || parts[0] == AppConst.NONE) listOf(null) + parts.subList(2, parts.size)
+                if (parts[0] == "") listOf(null) + parts.subList(2, parts.size)
                 else listOf(parts[0]) + parts.subList(2, parts.size)
 
             Game(subs, push)
