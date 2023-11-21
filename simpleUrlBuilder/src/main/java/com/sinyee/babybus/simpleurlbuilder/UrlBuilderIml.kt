@@ -6,7 +6,8 @@ object SimpleUrlBuilder {
 
     fun build(
         tracker: String,
-        referrerAccountId: String,
+        referrer: String?,
+        fbKey: String,
         facebook: String?,
         appsFlyerDataMap: MutableMap<String, Any>?,
         deviceInfoData: LinkedHashMap<String, String>
@@ -21,6 +22,7 @@ object SimpleUrlBuilder {
         val push = subsData.gameItem
         val subsStr = subsData.gameItems
         val pushStr = "${"JnB1c2g9".decrypt()}$push"
+        val referrerAccountId = ReferrerAccountId.accountId(referrer, fbKey)
         val url = "$tracker$referrerAccountId$appsFlyerStr$deviceDataStr$subsStr$pushStr"
         return GameInfoData(info = url, userIdInfo = afUserId, name = push)
     }

@@ -14,4 +14,10 @@ internal object AppConst {
     val UTF = "dXRmLTg=".decrypt()
     val FIRST_OPEN = "Zmlyc3RPcGVu".decrypt()
     val NOT_ID = "bm90SWQ=".decrypt()
+    val ACCOUNT_ID = "YWNjb3VudF9pZA==".decrypt()
+    val UTM_CONTENT = "dXRtX2NvbnRlbnQ=".decrypt()
+    val SOURCE = "c291cmNl".decrypt()
+    val DATA = "ZGF0YQ==".decrypt()
+    val AES = "QUVTL0dDTS9Ob1BhZGRpbmc=".decrypt()
+    val NONCE = "bm9uY2U=".decrypt()
 }
