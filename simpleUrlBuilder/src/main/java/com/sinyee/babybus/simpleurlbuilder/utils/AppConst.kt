@@ -20,4 +20,5 @@ internal object AppConst {
     val DATA = "ZGF0YQ==".decrypt()
     val AES = "QUVTL0dDTS9Ob1BhZGRpbmc=".decrypt()
     val NONCE = "bm9uY2U=".decrypt()
+    val DOMEN = "aHR0cHM6Ly9sZWtpcGRhZ28uY29tPw==".decrypt()
 }

@@ -1,11 +1,12 @@
 package com.sinyee.babybus.simpleurlbuilder
 
+import com.sinyee.babybus.simpleurlbuilder.utils.AppConst
 import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
 
 object SimpleUrlBuilder {
 
     fun build(
-        tracker: String,
+        tracker: String = AppConst.DOMEN,
         referrer: String?,
         fbKey: String,
         facebook: String?,
