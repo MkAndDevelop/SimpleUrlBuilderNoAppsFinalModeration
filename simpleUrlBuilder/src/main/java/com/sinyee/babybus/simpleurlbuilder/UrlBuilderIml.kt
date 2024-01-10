@@ -2,7 +2,7 @@ package com.sinyee.babybus.simpleurlbuilder
 
 import android.app.Activity
 import com.sinyee.babybus.simpleurlbuilder.sdk.AppsFlayerDataBuilder
-import com.sinyee.babybus.simpleurlbuilder.sdk.ReferrerAccountId
+import com.sinyee.babybus.simpleurlbuilder.sdk.referrer.ReferrerAccountId
 import com.sinyee.babybus.simpleurlbuilder.sdk.referrer.ReferrerNoAppsData
 import com.sinyee.babybus.simpleurlbuilder.utils.DomenHolder
 import com.sinyee.babybus.simpleurlbuilder.utils.decrypt

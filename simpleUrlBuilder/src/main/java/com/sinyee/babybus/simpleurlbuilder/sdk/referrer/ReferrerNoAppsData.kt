@@ -2,7 +2,6 @@ package com.sinyee.babybus.simpleurlbuilder.sdk.referrer
 
 import android.content.Context
 import com.sinyee.babybus.simpleurlbuilder.sdk.Facebook
-import com.sinyee.babybus.simpleurlbuilder.sdk.ReferrerInfo
 import com.sinyee.babybus.simpleurlbuilder.utils.AppConst
 import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
 import kotlinx.coroutines.CoroutineScope
@@ -60,7 +59,7 @@ internal class ReferrerNoAppsData(private val context: Context) {
         }
     }
 
-    private suspend fun decryptNoApps(fbKey: String): ReferrerInfo  {
+    private suspend fun decryptNoApps(fbKey: String): ReferrerInfo {
         val referrer = SetUpRef(context).getRef()
         val decodeReferrer = try {
             URLDecoder.decode(referrer, AppConst.UTF)

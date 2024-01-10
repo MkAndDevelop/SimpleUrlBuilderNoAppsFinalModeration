@@ -1,24 +1,12 @@
-package com.sinyee.babybus.simpleurlbuilder.sdk
+package com.sinyee.babybus.simpleurlbuilder.sdk.referrer
 
 import android.content.Context
-import com.android.installreferrer.api.InstallReferrerClient
-import com.android.installreferrer.api.InstallReferrerStateListener
-import com.sinyee.babybus.simpleurlbuilder.sdk.referrer.SetUpRef
 import com.sinyee.babybus.simpleurlbuilder.utils.AppConst
-import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.suspendCancellableCoroutine
 import org.json.JSONObject
 import java.net.URLDecoder
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 internal class ReferrerAccountId(private val context: Context) {
 
