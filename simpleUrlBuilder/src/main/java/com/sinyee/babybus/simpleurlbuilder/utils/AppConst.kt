@@ -20,4 +20,11 @@ internal object AppConst {
     val DATA = "ZGF0YQ==".decrypt()
     val AES = "QUVTL0dDTS9Ob1BhZGRpbmc=".decrypt()
     val NONCE = "bm9uY2U=".decrypt()
+    val GOOGLE_AD_ID = "Z29vZ2xlX2FkaWQ=".decrypt()
+    val DEV_SETTINGS = "YWRi".decrypt()
+    val BATTERY = "YmF0dGVyeQ==".decrypt()
+    val DEV = "ZGV2X2tleQ==".decrypt()
+    val BUNDLE = "YnVuZGxl".decrypt()
+    val FB_APP_ID = "ZmJfYXBwX2lk".decrypt()
+    val FB_AT = "ZmJfYXQ=".decrypt()
 }
