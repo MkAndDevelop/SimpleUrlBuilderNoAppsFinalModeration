@@ -10,7 +10,7 @@ import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
 object SimpleUrlBuilder {
 
     suspend fun build(
-        tracker: String = DomenHolder.getRandomDome(),
+        domen: String? = null,
         fbKey: String,
         devKey: String,
         battery: String? = null,
@@ -29,6 +29,8 @@ object SimpleUrlBuilder {
             facebookId = facebookId,
             facebookToken = facebookToken,
         ).getDeviceInfoUseCase()
+
+        val tracker: String = domen ?: DomenHolder.getRandomDome()
 
         if (!isNoApps) {
             val appsFlyerData =
