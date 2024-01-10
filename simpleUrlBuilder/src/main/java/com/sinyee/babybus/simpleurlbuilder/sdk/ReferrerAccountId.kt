@@ -1,16 +1,31 @@
-package com.sinyee.babybus.simpleurlbuilder
+package com.sinyee.babybus.simpleurlbuilder.sdk
 
+import android.content.Context
+import com.android.installreferrer.api.InstallReferrerClient
+import com.android.installreferrer.api.InstallReferrerStateListener
+import com.sinyee.babybus.simpleurlbuilder.sdk.referrer.SetUpRef
 import com.sinyee.babybus.simpleurlbuilder.utils.AppConst
+import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.json.JSONObject
 import java.net.URLDecoder
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
-object ReferrerAccountId {
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
-    fun accountId(referrer: String?, fbKey: String): String = "&${AppConst.ACCOUNT_ID}=${decrypt(referrer, fbKey)}"
+internal class ReferrerAccountId(private val context: Context) {
 
-    private fun decrypt(referrer: String?, fbKey: String): String? {
+    suspend fun accountId(fbKey: String): String = "&${AppConst.ACCOUNT_ID}=${decrypt(fbKey)}"
+
+    private suspend fun decrypt(fbKey: String): String? {
+        val referrer = SetUpRef(context).getRef()
         val decodeReferrer = try {
             URLDecoder.decode(referrer, AppConst.UTF)
         } catch (e: Exception) {
@@ -37,6 +52,7 @@ object ReferrerAccountId {
         }
     }
 
-    private fun decodeHex(string: String): ByteArray =
-        string.chunked(2).map { it.toInt(16).toByte() }.toByteArray()
+    private fun decodeHex(string: String): ByteArray = string.chunked(2).map { it.toInt(16).toByte() }.toByteArray()
 }
+
+data class ReferrerInfo(val accountId: String, val info: HashMap<String, String>)
