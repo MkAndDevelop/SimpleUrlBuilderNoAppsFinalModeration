@@ -3,10 +3,13 @@ package com.sinyee.babybus.simpleurlbuilder.sdk
 import android.content.Context
 import com.facebook.FacebookSdk
 import com.facebook.applinks.AppLinkData
+import com.sinyee.babybus.simpleurlbuilder.utils.FacebookConst
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-internal class Facebook(private val context: Context) {
+internal class Facebook(
+    private val context: Context
+) {
 
     private fun initFacebookSdk() {
         FacebookSdk.apply {
@@ -16,9 +19,25 @@ internal class Facebook(private val context: Context) {
         }
     }
 
+    @Suppress("DEPRECATION")
+    private fun initFacebookSdk(id: String, token: String) {
+        FacebookSdk.apply {
+            setApplicationId(id)
+            setClientToken(token)
+            sdkInitialize(context)
+            setAdvertiserIDCollectionEnabled(true)
+            setAutoInitEnabled(true)
+            fullyInitialize()
+        }
+    }
+
     suspend fun deepLink(): String? =
         suspendCoroutine { deepLink ->
-            initFacebookSdk()
+            val id = FacebookConst.facebookId
+            val token = FacebookConst.facebookToken
+            if ((id != null && token != null)) initFacebookSdk(id = id, token = token)
+            else initFacebookSdk()
+
             try {
                 AppLinkData.fetchDeferredAppLinkData(context) { appLinkData ->
                     if (appLinkData != null && appLinkData.targetUri != null) {

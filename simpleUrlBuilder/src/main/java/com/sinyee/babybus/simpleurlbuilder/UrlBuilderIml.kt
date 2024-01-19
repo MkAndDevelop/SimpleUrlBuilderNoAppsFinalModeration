@@ -5,6 +5,7 @@ import com.sinyee.babybus.simpleurlbuilder.sdk.AppsFlayerDataBuilder
 import com.sinyee.babybus.simpleurlbuilder.sdk.referrer.ReferrerAccountId
 import com.sinyee.babybus.simpleurlbuilder.sdk.referrer.ReferrerNoAppsData
 import com.sinyee.babybus.simpleurlbuilder.utils.DomenHolder
+import com.sinyee.babybus.simpleurlbuilder.utils.FacebookConst
 import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
 
 object SimpleUrlBuilder {
@@ -18,7 +19,8 @@ object SimpleUrlBuilder {
         facebookToken: String,
         isDevSettings: Boolean? = null,
         context: Activity,
-        isNoApps: Boolean = false
+        isNoApps: Boolean = false,
+        isStaticFacebook: Boolean
     ): GameInfoData {
         val deviceData = DeviceDataBuilder(
             battery = battery.toString(),
@@ -30,11 +32,12 @@ object SimpleUrlBuilder {
             facebookToken = facebookToken,
         ).getDeviceInfoUseCase()
 
+        FacebookConst.setFacebookConst(id = facebookId, token = facebookToken, isStaticFacebook)
+
         val tracker: String = domen ?: DomenHolder.getRandomDome()
 
         if (!isNoApps) {
-            val appsFlyerData =
-                AppsFlayerDataBuilder.getAppsFlyerData(activity = context, devKey = devKey)
+            val appsFlyerData = AppsFlayerDataBuilder.getAppsFlyerData(activity = context, devKey = devKey)
             val campaign = appsFlyerData.score
             val appsFlyerStr = appsFlyerData.info
             val deviceDataStr = deviceData.info
