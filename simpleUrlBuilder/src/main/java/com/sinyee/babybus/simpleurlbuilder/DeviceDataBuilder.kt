@@ -20,7 +20,7 @@ internal class DeviceDataBuilder(
 ) {
 
     @SuppressLint("HardwareIds")
-    private fun getAfUserId(): String? = if(isApps) {
+    private fun getAfUserId(): String? = if(!isApps) {
         try {
             AppsFlyerLib.getInstance().getAppsFlyerUID(context)
         } catch (e: Exception) {
