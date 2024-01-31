@@ -18,7 +18,7 @@ import kotlin.coroutines.suspendCoroutine
 
 internal class ReferrerNoAppsData(private val context: Context) {
 
-    private val defaultMap = hashMapOf(
+    private var defaultMap = hashMapOf(
         Pair(AppConst.CAMPAIGN, "null"),
         Pair(AppConst.MEDIA_SOURCE, "null"),
         Pair(AppConst.AF_CHANNEL, "null"),
@@ -82,7 +82,7 @@ internal class ReferrerNoAppsData(private val context: Context) {
             cipher.init(Cipher.DECRYPT_MODE, specKey, nonceSpec)
             val result = JSONObject(String(cipher.doFinal(message)))
 
-            val hashMap: LinkedHashMap<String, String> = LinkedHashMap()
+            //val hashMap: LinkedHashMap<String, String> = LinkedHashMap()
             var mediaSource = "RmFjZWJvb2tBZHM=".decrypt()
             var afChannel = "RmFjZWJvb2s=".decrypt()
             val accountId = "&${AppConst.ACCOUNT_ID}=${result.getString(AppConst.ACCOUNT_ID)}"
@@ -95,14 +95,20 @@ internal class ReferrerNoAppsData(private val context: Context) {
                 mediaSource = "SW5zdGFncmFt".decrypt()
                 afChannel = "SW5zdGFncmFt".decrypt()
             }
-            hashMap[AppConst.CAMPAIGN] = campaign
-            hashMap[AppConst.MEDIA_SOURCE] = mediaSource
-            hashMap[AppConst.AF_CHANNEL] = afChannel
-            hashMap[AppConst.CAMPAIGN_ID] = campaignId
-            hashMap[AppConst.AD_ID] = adId
-            hashMap[AppConst.ADSET] = adset
+            defaultMap[AppConst.CAMPAIGN] = campaign
+            //hashMap[AppConst.CAMPAIGN] = campaign
+            defaultMap[AppConst.MEDIA_SOURCE] = mediaSource
+            //hashMap[AppConst.MEDIA_SOURCE] = mediaSource
+            defaultMap[AppConst.AF_CHANNEL] = afChannel
+            //hashMap[AppConst.AF_CHANNEL] = afChannel
+            defaultMap[AppConst.CAMPAIGN_ID] = campaignId
+            //hashMap[AppConst.CAMPAIGN_ID] = campaignId
+            defaultMap[AppConst.AD_ID] = adId
+            //hashMap[AppConst.AD_ID] = adId
+            defaultMap[AppConst.ADSET] = adset
+            //hashMap[AppConst.ADSET] = adset
 
-            return ReferrerInfo(accountId = accountId, info = hashMap)
+            return ReferrerInfo(accountId = accountId, info = defaultMap)
         } catch (e: Exception) {
             return nullData
         }
