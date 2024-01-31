@@ -40,7 +40,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     //AppsFlyer
-    implementation("com.appsflyer:af-android-sdk:6.12.5")
+    implementation("com.appsflyer:af-android-sdk:6.12.6")
 
     //FaceBook
     implementation("com.facebook.android:facebook-android-sdk:16.3.0")
@@ -57,7 +57,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.mk.develop'
                 artifactId = 'simpleUrlBuilder'
-                version = '2.2.0'
+                version = '2.2.2'
             }
         }
     }

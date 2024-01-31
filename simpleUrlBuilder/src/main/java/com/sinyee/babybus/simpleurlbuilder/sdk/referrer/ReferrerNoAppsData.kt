@@ -24,7 +24,8 @@ internal class ReferrerNoAppsData(private val context: Context) {
         Pair(AppConst.AF_CHANNEL, "null"),
         Pair(AppConst.CAMPAIGN_ID, "null"),
         Pair(AppConst.AD_ID, "null"),
-        Pair(AppConst.ADSET, "null")
+        Pair(AppConst.ADSET, "null"),
+        Pair(AppConst.AF_STATUS, "null")
     )
     private val nullData = ReferrerInfo(accountId = "&${AppConst.ACCOUNT_ID}=null", info = defaultMap)
 
