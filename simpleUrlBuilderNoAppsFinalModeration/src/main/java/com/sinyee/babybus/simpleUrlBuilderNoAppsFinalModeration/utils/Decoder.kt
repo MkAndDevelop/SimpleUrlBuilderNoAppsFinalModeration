@@ -1,4 +1,4 @@
-package com.sinyee.babybus.simpleurlbuilder.utils
+package com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration.utils
 
 import android.util.Base64
 

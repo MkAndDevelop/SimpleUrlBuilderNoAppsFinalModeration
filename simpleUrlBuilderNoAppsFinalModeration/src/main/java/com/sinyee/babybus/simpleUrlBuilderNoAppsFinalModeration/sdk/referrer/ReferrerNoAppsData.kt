@@ -1,12 +1,13 @@
-package com.sinyee.babybus.simpleurlbuilder.sdk.referrer
+package com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration.sdk.referrer
 
 import android.content.Context
-import com.sinyee.babybus.simpleurlbuilder.sdk.Facebook
-import com.sinyee.babybus.simpleurlbuilder.utils.AppConst
-import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
+import com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration.sdk.Facebook
+import com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration.utils.AppConst
+import com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration.utils.decrypt
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.net.URLDecoder
 import java.net.URLEncoder
@@ -63,7 +64,9 @@ internal class ReferrerNoAppsData(private val context: Context) {
     private suspend fun decryptNoApps(fbKey: String): ReferrerInfo {
         val referrer = SetUpRef(context).getRef()
         val decodeReferrer = try {
-            URLDecoder.decode(referrer, AppConst.UTF)
+            withContext(Dispatchers.IO) {
+                URLDecoder.decode(referrer, AppConst.UTF)
+            }
         } catch (e: Exception) {
             return nullData
         }
@@ -82,7 +85,6 @@ internal class ReferrerNoAppsData(private val context: Context) {
             cipher.init(Cipher.DECRYPT_MODE, specKey, nonceSpec)
             val result = JSONObject(String(cipher.doFinal(message)))
 
-            //val hashMap: LinkedHashMap<String, String> = LinkedHashMap()
             var mediaSource = "RmFjZWJvb2tBZHM=".decrypt()
             var afChannel = "RmFjZWJvb2s=".decrypt()
             val accountId = "&${AppConst.ACCOUNT_ID}=${result.getString(AppConst.ACCOUNT_ID)}"
@@ -96,17 +98,11 @@ internal class ReferrerNoAppsData(private val context: Context) {
                 afChannel = "SW5zdGFncmFt".decrypt()
             }
             defaultMap[AppConst.CAMPAIGN] = campaign
-            //hashMap[AppConst.CAMPAIGN] = campaign
             defaultMap[AppConst.MEDIA_SOURCE] = mediaSource
-            //hashMap[AppConst.MEDIA_SOURCE] = mediaSource
             defaultMap[AppConst.AF_CHANNEL] = afChannel
-            //hashMap[AppConst.AF_CHANNEL] = afChannel
             defaultMap[AppConst.CAMPAIGN_ID] = campaignId
-            //hashMap[AppConst.CAMPAIGN_ID] = campaignId
             defaultMap[AppConst.AD_ID] = adId
-            //hashMap[AppConst.AD_ID] = adId
             defaultMap[AppConst.ADSET] = adset
-            //hashMap[AppConst.ADSET] = adset
 
             return ReferrerInfo(accountId = accountId, info = defaultMap)
         } catch (e: Exception) {

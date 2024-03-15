@@ -1,17 +1,16 @@
-package com.sinyee.babybus.simpleurlbuilder
+package com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.provider.Settings
 import com.appsflyer.AppsFlyerLib
 import com.google.android.gms.ads.identifier.AdvertisingIdClient
-import com.sinyee.babybus.simpleurlbuilder.utils.AppConst
+import com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration.utils.AppConst
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 internal class DeviceDataBuilder(
     private val context: Context,
-    private val isApps: Boolean,
     private val battery: String,
     private val isDevSettings: Boolean?,
     private val devKey: String,
@@ -20,19 +19,13 @@ internal class DeviceDataBuilder(
 ) {
 
     @SuppressLint("HardwareIds")
-    private fun getAfUserId(): String? = if(!isApps) {
-        try {
-            AppsFlyerLib.getInstance().getAppsFlyerUID(context)
-        } catch (e: Exception) {
-            null
-        }
-    } else {
+    private fun getAfUserId(): String? =
         try {
             Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
         } catch (e: Exception) {
             null
         }
-    }
+
 
     private suspend fun googleAdId(): String? = withContext(Dispatchers.IO) {
         try {

@@ -1,7 +1,7 @@
-package com.sinyee.babybus.simpleurlbuilder
+package com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration
 
-import com.sinyee.babybus.simpleurlbuilder.utils.AppConst
-import com.sinyee.babybus.simpleurlbuilder.utils.decrypt
+import com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration.utils.AppConst
+import com.sinyee.babybus.simpleUrlBuilderNoAppsFinalModeration.utils.decrypt
 
 internal object SubBuilder {
     fun getSubData(campaign: String?): GameData {
