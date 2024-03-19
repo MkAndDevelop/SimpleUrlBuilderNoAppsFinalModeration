@@ -22,9 +22,6 @@ internal object SubBuilder {
                 }
             }
 
-            parts[10] = AppConst.FIRST_OPEN
-            parts[11] = "null"
-
             val push = if (parts[1] == "") null
             else parts[1]
 
@@ -35,7 +32,7 @@ internal object SubBuilder {
             Game(subs, push)
         } else {
             val push: String? = null
-            val subs = listOf(null, "", "", "", "", "", "", "", "", AppConst.FIRST_OPEN, "null")
+            val subs = listOf(null, "", "", "", "", "", "", "", "", "", "null")
             Game(subs, push)
         }
     }
@@ -44,8 +41,7 @@ internal object SubBuilder {
         val str = StringBuilder()
         var key = 1
         subs.forEachIndexed { _, item ->
-            if (key == 11) str.append("&${AppConst.NOT_ID}=$item")
-            else str.append("${"JnN1Yg==".decrypt()}$key=$item")
+            str.append("${"JnN1Yg==".decrypt()}$key=$item")
             key++
         }
         return str.toString()
